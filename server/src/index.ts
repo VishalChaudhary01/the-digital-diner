@@ -2,6 +2,7 @@ import 'dotenv/config';
 import express, { Request, Response } from 'express';
 import { Env } from '@config/env.config';
 import { prisma } from '@databases/postgres/prisma/client';
+import { errorHandler } from '@middlewares/error-handler';
 import { connectMongoDB } from 'src/database/mongo/connect-mongodb';
 
 const app = express();
@@ -13,6 +14,8 @@ app.get(`/`, (_req: Request, res: Response) => {
     message: 'Healthy server',
   });
 });
+
+app.use(errorHandler);
 
 app.listen(Env.PORT, async () => {
   await prisma.$connect();
