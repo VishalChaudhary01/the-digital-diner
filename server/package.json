@@ -1,0 +1,44 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "rm -rf dist && tsc && tsc-alias",
+    "start": "npm run build && node -r module-alias/register dist/index.js",
+    "dev": "ts-node-dev --respawn -r tsconfig-paths/register src/index.ts"
+  },
+  "keywords": [],
+  "author": "Vishal Chaudhary",
+  "license": "ISC",
+  "description": "ExpressJS + TypeScript + MongoDB + PostgreSQL Server",
+  "_moduleAliases": {
+    "@config": "src/config",
+    "@controllers": "src/controllers",
+    "@enums": "src/enums",
+    "@middlewares": "src/middlewares",
+    "@models": "src/models",
+    "@routes": "src/routes",
+    "@services": "src/services",
+    "@utils": "src/utils",
+    "@validators": "src/validators"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "module-alias": "^2.2.3",
+    "mongoose": "^8.13.2",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/dotenv": "^8.2.3",
+    "@types/express": "^5.0.0",
+    "@types/mongoose": "^5.11.97",
+    "@types/node": "^22.10.2",
+    "ts-node-dev": "^2.0.0",
+    "tsc-alias": "^1.8.15",
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "^5.7.2"
+  }
+}
