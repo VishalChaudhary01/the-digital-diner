@@ -19,6 +19,7 @@
     "paths": {
       "@config/*": ["src/config/*"],
       "@controllers/*": ["src/controllers/*"],
+      "@databases/*": ["src/database/*"],
       "@enums/*": ["src/enums/*"],
       "@middlewares/*": ["src/middlewares/*"],
       "@models/*": ["src/models/*"],
