@@ -19,16 +19,15 @@
     "paths": {
       "@config/*": ["src/config/*"],
       "@controllers/*": ["src/controllers/*"],
-      "@databases/*": ["src/database/*"],
+      "@database/*": ["src/database/*"],
       "@enums/*": ["src/enums/*"],
       "@middlewares/*": ["src/middlewares/*"],
-      "@models/*": ["src/models/*"],
       "@routes/*": ["src/routes/*"],
       "@services/*": ["src/services/*"],
       "@utils/*": ["src/utils/*"],
       "@validators/*": ["src/validators/*"]
     }
   },
-  "include": ["src/**/*.ts", "@types"],
+  "include": ["src/**/*.ts", "types"],
   "exclude": ["node_modules", "test", "dist"]
 }

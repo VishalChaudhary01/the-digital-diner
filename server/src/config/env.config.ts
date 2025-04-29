@@ -6,6 +6,9 @@ export const envConfig = () => ({
   NODE_ENV: getEnv('NODE_ENV', 'development'),
   MONGO_DATABASE_URL: getEnv('MONGO_DATABASE_URL'),
   POSTGRES_DATABASE_URL: getEnv('POSTGRES_DATABASE_URL'),
+  JWT_EXPIRES_IN: getEnv('JWT_EXPIRES_IN', '1d'),
+  JWT_SECRET: getEnv('JWT_SECRET', 'secret'),
+  AUTH_COOKIE_NAME: getEnv('AUTH_COOKIE_NAME', 'auth-token'),
 });
 
 export const Env = envConfig();
