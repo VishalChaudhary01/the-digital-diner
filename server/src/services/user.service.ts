@@ -17,3 +17,18 @@ export const getProfileService = async (userId: User['id']) => {
 
   return { user };
 };
+
+export const getUserRoleService = async (userId: User['id']) => {
+  const user = await prisma.user.findUnique({
+    where: { id: userId },
+    select: { role: true },
+  });
+  if (!user) {
+    throw new NotFoundException(
+      'User not found',
+      ErrorCodeEnum.AUTH_USER_NOT_FOUND
+    );
+  }
+
+  return { role: user.role };
+};
