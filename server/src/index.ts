@@ -10,6 +10,7 @@ import { connectMongoDB } from '@database/mongo/connect-mongodb';
 import authRoutes from '@routes/auth.route';
 import userRoutes from '@routes/user.route';
 import itemRoutes from '@routes/menu-item.route';
+import orderRoutes from '@routes/order.route';
 
 const app = express();
 const BASE_PATH = Env.BASE_PATH;
@@ -27,6 +28,7 @@ app.get(`/`, (_req: Request, res: Response) => {
 app.use(`${BASE_PATH}/auth`, authRoutes);
 app.use(`${BASE_PATH}/user`, authMiddleware, userRoutes);
 app.use(`${BASE_PATH}/menuItem`, itemRoutes);
+app.use(`${BASE_PATH}/order`, authMiddleware, orderRoutes);
 
 app.use(errorHandler);
 

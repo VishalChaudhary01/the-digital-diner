@@ -45,9 +45,18 @@ export const priceSchema = z
   .number({ required_error: 'Price is required' })
   .nonnegative({ message: 'Price must be a non-negative number' });
 
-export const statusSchema = z.enum(
-  Object.values(OrderStatus) as [string, ...string[]],
-  { required_error: 'Status is required' }
+const StatusEnum = z.enum([...Object.values(OrderStatus)] as [
+  string,
+  ...string[]
+]);
+
+export const statusSchema = StatusEnum.refine(
+  (val) => StatusEnum.options.includes(val),
+  (val) => ({
+    message: `Invalid status '${val}'. Allowed values are: ${StatusEnum.options.join(
+      ', '
+    )}`,
+  })
 );
 
 export const idSchema = z.string().trim().min(1, 'Id is Required');
