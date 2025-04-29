@@ -1,3 +1,5 @@
+import { ItemCategoryEnum } from '@enums/item-category.enum';
+import { OrderStatus } from '@prisma/client';
 import { z } from 'zod';
 
 export const nameSchema = z
@@ -19,3 +21,33 @@ export const passwordSchema = z
   .regex(/[a-z]/, 'Include at least one lowercase letter (a-z)')
   .regex(/[0-9]/, 'Include at least one number (0-9)')
   .regex(/[@$!%*?&#]/, 'Include at least one special character (@$!%*?&#)');
+
+export const descriptionSchema = z
+  .string()
+  .trim()
+  .max(500, 'Description should be less then 500 characters')
+  .optional();
+
+export const imageUrlSchema = z
+  .string()
+  .url({ message: 'Image URL must be valid' })
+  .optional();
+
+export const isAvailableSchema = z.boolean({
+  required_error: 'Availability is required',
+});
+
+export const categorySchema = z.nativeEnum(ItemCategoryEnum, {
+  required_error: 'Category is required',
+});
+
+export const priceSchema = z
+  .number({ required_error: 'Price is required' })
+  .nonnegative({ message: 'Price must be a non-negative number' });
+
+export const statusSchema = z.enum(
+  Object.values(OrderStatus) as [string, ...string[]],
+  { required_error: 'Status is required' }
+);
+
+export const idSchema = z.string().trim().min(1, 'Id is Required');
