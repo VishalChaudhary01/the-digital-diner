@@ -1,12 +1,7 @@
-import { Button } from './components/ui/button';
+import AppRoutes from './routes';
 
 function App() {
-  return (
-    <div>
-      <h1 className='text-2xl font-bold'>Hi There</h1>
-      <Button>Click me</Button>
-    </div>
-  );
+  return <AppRoutes />;
 }
 
 export default App;
