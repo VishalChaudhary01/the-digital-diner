@@ -117,12 +117,12 @@ export const getAllOrdersController = asyncHandler(
     const { role } = await getUserRoleService(userId);
     roleGuard(role, [Permissions.GET_ALL_ORDER]);
 
-    const { allOrders } = await getAllOrdersService();
+    const { allOrders: orders } = await getAllOrdersService();
 
     res.status(HTTPSTATUS.OK).json({
       message: 'All orders fetched successfully',
       data: {
-        allOrders,
+        orders,
       },
     });
   }

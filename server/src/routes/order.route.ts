@@ -11,10 +11,10 @@ const orderRouter = Router();
 
 orderRouter.post('/', createOrderController);
 orderRouter.put('/cancel/:orderId', cancelOrderController);
-orderRouter.get('/my-orders', getOrdersController);
+orderRouter.get('/myOrders', getOrdersController);
 
 // Only Admin Routes
-orderRouter.put('/update-status/:orderId', updateOrderStatusController);
-orderRouter.get('/all-orders', getAllOrdersController);
+orderRouter.put('/updateStatus/:orderId', updateOrderStatusController);
+orderRouter.get('/allOrders', getAllOrdersController);
 
 export default orderRouter;
