@@ -79,12 +79,12 @@ export const cancelOrderService = async (userId: string, orderId: string) => {
     throw new BadRequestException('Only pending orders can be cancelled');
   }
 
-  await prisma.order.update({
+  const cancelledOrder = await prisma.order.update({
     where: { id: orderId },
     data: { status: OrderStatus.CANCEL },
   });
 
-  return;
+  return { cancelledOrder };
 };
 
 export const getAllOrdersService = async () => {

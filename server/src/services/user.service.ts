@@ -6,7 +6,7 @@ import { NotFoundException } from '@utils/app-error';
 export const getProfileService = async (userId: User['id']) => {
   const user = await prisma.user.findFirst({
     where: { id: userId },
-    select: { id: true, name: true, phoneNumber: true },
+    select: { id: true, name: true, phoneNumber: true, role: true },
   });
   if (!user) {
     throw new NotFoundException(

@@ -18,8 +18,10 @@ export const getProfileController = asyncHandler(
     const { user } = await getProfileService(userId);
 
     res.status(HTTPSTATUS.OK).json({
-      message: 'Profile Fetched successfully',
-      user,
+      message: `${user.name}'s Profile Fetched successfully`,
+      data: {
+        user,
+      },
     });
   }
 );

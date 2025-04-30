@@ -16,9 +16,9 @@ import {
 } from '@validators/menu-item.validator';
 
 export const createItemService = async (data: CreateItemInput) => {
-  const newItem = await MenuItem.create(data);
+  const createdItem = await MenuItem.create(data);
 
-  return { item: newItem };
+  return { createdItem };
 };
 
 export const updateItemService = async (
@@ -35,7 +35,7 @@ export const updateItemService = async (
     );
   }
 
-  return { item: updatedItem };
+  return { updatedItem };
 };
 
 export const deleteItemService = async (itemId: MenuItemDocument['_id']) => {
@@ -47,7 +47,7 @@ export const deleteItemService = async (itemId: MenuItemDocument['_id']) => {
     );
   }
 
-  return;
+  return { deletedItem };
 };
 
 export const getItemByIdService = async (itemId: MenuItemDocument['_id']) => {

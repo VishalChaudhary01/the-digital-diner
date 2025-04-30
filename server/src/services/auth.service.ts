@@ -17,6 +17,7 @@ export const signupService = async (data: SignupInput) => {
   const hashedPassword = await hashValue(data.password);
   const newUser = await prisma.user.create({
     data: { ...data, password: hashedPassword },
+    select: { id: true, name: true, phoneNumber: true, role: true },
   });
 
   return { user: newUser };
@@ -37,5 +38,12 @@ export const signinService = async (data: SigninInput) => {
     throw new BadRequestException('Invalid phone number or password');
   }
 
-  return { user };
+  return {
+    user: {
+      id: user.id,
+      name: user.name,
+      phoneNumber: user.phoneNumber,
+      role: user.role,
+    },
+  };
 };

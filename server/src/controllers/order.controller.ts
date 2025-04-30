@@ -32,7 +32,9 @@ export const createOrderController = asyncHandler(
 
     res.status(HTTPSTATUS.CREATED).json({
       message: 'Order placed successfully',
-      order,
+      data: {
+        order,
+      },
     });
   }
 );
@@ -49,8 +51,10 @@ export const getOrdersController = asyncHandler(
     const { orders } = await getOrdersService(userId);
 
     res.status(HTTPSTATUS.OK).json({
-      message: 'Order fetched successfully',
-      orders,
+      message: 'Orders are fetched successfully',
+      data: {
+        orders,
+      },
     });
   }
 );
@@ -65,10 +69,13 @@ export const cancelOrderController = asyncHandler(
       );
     }
     const orderId = req.params.orderId;
-    await cancelOrderService(userId, orderId);
+    const { cancelledOrder } = await cancelOrderService(userId, orderId);
 
     res.status(HTTPSTATUS.OK).json({
       message: 'Order cancelled successfully',
+      data: {
+        cancelledOrder,
+      },
     });
   }
 );
@@ -91,7 +98,9 @@ export const updateOrderStatusController = asyncHandler(
 
     res.status(HTTPSTATUS.OK).json({
       message: 'Order updated successfully',
-      updatedOrder,
+      data: {
+        updatedOrder,
+      },
     });
   }
 );
@@ -112,7 +121,9 @@ export const getAllOrdersController = asyncHandler(
 
     res.status(HTTPSTATUS.OK).json({
       message: 'All orders fetched successfully',
-      allOrders,
+      data: {
+        allOrders,
+      },
     });
   }
 );

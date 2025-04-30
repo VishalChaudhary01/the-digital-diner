@@ -17,7 +17,10 @@ export const signupController = asyncHandler(
 
     setAuthenticationCookies({ res, token });
     res.status(HTTPSTATUS.OK).json({
-      message: 'User registered successfully',
+      message: `${user.name}  registered successfully`,
+      data: {
+        user,
+      },
     });
   }
 );
@@ -30,7 +33,10 @@ export const signinController = asyncHandler(
 
     setAuthenticationCookies({ res, token });
     res.status(HTTPSTATUS.OK).json({
-      message: 'User logged in successfully',
+      message: `${user.name} logged in successfully`,
+      data: {
+        user,
+      },
     });
   }
 );

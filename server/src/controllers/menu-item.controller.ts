@@ -34,11 +34,13 @@ export const createItemController = asyncHandler(
     const { role } = await getUserRoleService(userId);
     roleGuard(role, [Permissions.CREATE_MENUE_ITEM]);
 
-    const { item } = await createItemService(data);
+    const { createdItem } = await createItemService(data);
 
     res.status(HTTPSTATUS.CREATED).json({
-      message: 'Item added to menue successfully',
-      item,
+      message: `Item ${createdItem.name} added to menue successfully`,
+      data: {
+        createdItem,
+      },
     });
   }
 );
@@ -58,11 +60,13 @@ export const updateItemController = asyncHandler(
     const { role } = await getUserRoleService(userId);
     roleGuard(role, [Permissions.UPDATE_MENUE_ITEM]);
 
-    const { item } = await updateItemService(itemId, data);
+    const { updatedItem } = await updateItemService(itemId, data);
 
     res.status(HTTPSTATUS.OK).json({
-      message: 'Item updated successfully',
-      item,
+      message: `Item ${updatedItem.name} updated successfully`,
+      data: {
+        updatedItem,
+      },
     });
   }
 );
@@ -87,9 +91,11 @@ export const getAllItemsController = asyncHandler(
     );
 
     res.status(HTTPSTATUS.OK).json({
-      message: 'Items fetched successfully',
-      items,
-      pagination,
+      message: `All Items fetched successfully`,
+      data: {
+        items,
+        pagination,
+      },
     });
   }
 );
@@ -99,8 +105,10 @@ export const getItemByIdController = asyncHandler(
     const itemId = req.params.itemId;
     const { item } = await getItemByIdService(itemId);
     res.status(HTTPSTATUS.OK).json({
-      message: 'Item fetched successfully',
-      item,
+      message: `Item ${item.name} fetched successfully`,
+      data: {
+        item,
+      },
     });
   }
 );
@@ -118,10 +126,10 @@ export const deleteItemController = asyncHandler(
     const { role } = await getUserRoleService(userId);
     roleGuard(role, [Permissions.DELETE_MENUE_ITEM]);
 
-    await deleteItemService(itemId);
+    const { deletedItem } = await deleteItemService(itemId);
 
     res.status(HTTPSTATUS.OK).json({
-      message: 'Item deleted successfully',
+      message: `Item ${deletedItem.name} deleted successfully`,
     });
   }
 );
