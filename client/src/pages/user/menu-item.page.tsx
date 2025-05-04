@@ -1,7 +1,7 @@
 import { Loader } from 'lucide-react';
 import { useGetAllMenuItems } from '@/hooks/react-query';
 import { MenuItemCard } from '@/components/base/menu-item-card';
-import { MenuPagination } from '@/components/base/menu-pagination';
+import { MenuPagination } from '@/components/base/filters/menu-pagination';
 
 const MenuItemPage = () => {
   const { data: res, isLoading } = useGetAllMenuItems();
