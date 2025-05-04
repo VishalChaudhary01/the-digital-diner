@@ -1,7 +1,7 @@
 export const UserRoleEnum = {
   USER: 'USER',
   ADMIN: 'ADMIN',
-};
+} as const;
 
 export const ItemCategoryEnum = {
   APPETIZERS: 'APPETIZERS',
@@ -23,7 +23,16 @@ export const OrderStatusEnum = {
   DELIVERED: 'DELIVERED',
 } as const;
 
-export type UserRole = keyof typeof UserRoleEnum;
-export type ItemCategory = keyof typeof ItemCategoryEnum;
-export type OrderStatus = keyof typeof OrderStatusEnum;
-export type SortBy = keyof typeof SortByEnum;
+export const categoryLabels = {
+  APPETIZERS: 'Appetizers',
+  MAIN_COURSES: 'Main Courses',
+  DESSERTS: 'Desserts',
+  DRINKS: 'Drinks',
+};
+
+export type UserRole = (typeof UserRoleEnum)[keyof typeof UserRoleEnum];
+export type ItemCategory =
+  (typeof ItemCategoryEnum)[keyof typeof ItemCategoryEnum];
+export type OrderStatus =
+  (typeof OrderStatusEnum)[keyof typeof OrderStatusEnum];
+export type SortBy = (typeof SortByEnum)[keyof typeof SortByEnum];

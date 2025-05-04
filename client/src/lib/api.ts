@@ -5,8 +5,8 @@ import {
   CreateItemInput,
   CreateItemResponse,
   GetItemByIdResponse,
-  GetItemsRequest,
   GetItemsResponse,
+  MenuFiltersState,
   UpdateItemInput,
   UpdateItemResponse,
 } from '@/types/menu-item.type';
@@ -62,7 +62,7 @@ export const getAllMenuItemQueryFn = async ({
   sortBy,
   pageSize,
   pageNumber,
-}: GetItemsRequest): Promise<GetItemsResponse> => {
+}: MenuFiltersState): Promise<GetItemsResponse> => {
   const queryParams = new URLSearchParams();
 
   if (keyword) queryParams.append('keyword', keyword);
@@ -77,7 +77,6 @@ export const getAllMenuItemQueryFn = async ({
   if (pageNumber) queryParams.append('pageNumber', pageNumber.toString());
 
   const response = await API.get(`/menuItem?${queryParams.toString()}`);
-  console.log('response', response);
   return response.data;
 };
 

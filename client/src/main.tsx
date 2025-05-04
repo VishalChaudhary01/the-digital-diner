@@ -1,13 +1,18 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
+import { Toaster } from 'sonner';
+import { NuqsAdapter } from 'nuqs/adapters/react';
 import './index.css';
 import App from './App.tsx';
-import QueryProvider from './context/query-provider.tsx';
+import { RootProvider } from './providers/root.provider.tsx';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <QueryProvider>
-      <App />
-    </QueryProvider>
+    <NuqsAdapter>
+      <Toaster richColors />
+      <RootProvider>
+        <App />
+      </RootProvider>
+    </NuqsAdapter>
   </StrictMode>
 );

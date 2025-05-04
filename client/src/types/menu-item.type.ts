@@ -4,16 +4,10 @@ import {
   createItemSchema,
   updateItemSchema,
 } from '@/validators/menu-item.validator';
-import { SortBy } from '@/constants';
+import { ItemCategory, SortBy } from '@/constants';
 
 export type CreateItemInput = z.infer<typeof createItemSchema>;
 export type UpdateItemInput = z.infer<typeof updateItemSchema>;
-
-export type ItemCategory =
-  | 'APPETIZERS'
-  | 'MAIN_COURSES'
-  | 'DESSERTS'
-  | 'DRINKS';
 
 export type MenuItem = {
   _id: string;
@@ -27,22 +21,20 @@ export type MenuItem = {
   updatedAt: Date;
 };
 
-export type Pagination = {
+export interface Pagination {
   pageSize: number;
   pageNumber: number;
   totalCount: number;
   totalPages: number;
-  skip: number;
-};
+}
 
-export type GetItemsRequest = {
-  keyword?: string | null;
-  category?: ItemCategory[] | null;
-  available?: boolean | null;
-  sortBy?: SortBy | null;
-  pageSize?: number | null;
-  pageNumber?: number | null;
-  skip?: boolean | null;
+export type MenuFiltersState = {
+  keyword: string | null;
+  sortBy: SortBy | null;
+  available: boolean | null;
+  category: ItemCategory[] | null;
+  pageSize: number;
+  pageNumber: number;
 };
 
 // Menu Item Response Type

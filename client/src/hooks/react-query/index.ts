@@ -6,7 +6,7 @@ import {
   getProfileQueryFn,
   getAllOrdersQueryFn,
 } from '@/lib/api';
-import { GetItemsRequest } from '@/types/menu-item.type';
+import { useMenuFilters } from '../use-menu-filters';
 
 export const useAuth = () => {
   return useQuery({
@@ -17,22 +17,12 @@ export const useAuth = () => {
   });
 };
 
-export const useGetAllMenuItems = ({
-  pageSize = 10,
-  pageNumber = 1,
-  skip = false,
-}: GetItemsRequest) => {
+export const useGetAllMenuItems = () => {
+  const [filters] = useMenuFilters();
   return useQuery({
-    queryKey: ['all-items', pageSize, pageNumber],
-    queryFn: () =>
-      getAllMenuItemQueryFn({
-        pageSize,
-        pageNumber,
-      }),
-    staleTime: Infinity,
-    retry: 2,
+    queryKey: ['all-items', filters],
+    queryFn: () => getAllMenuItemQueryFn(filters),
     placeholderData: keepPreviousData,
-    enabled: !skip,
   });
 };
 
