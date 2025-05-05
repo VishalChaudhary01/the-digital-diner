@@ -5,6 +5,7 @@ export const BASE_ROUTES = {
 
 export const USER_ROUTES = {
   PROFILE: '/:userId/profile',
+  CHECKOUT: '/checkout',
 };
 
 export const AUTH_ROUTES = {

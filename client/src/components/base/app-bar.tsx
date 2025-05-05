@@ -20,6 +20,7 @@ import { toast } from 'sonner';
 import { useCallback } from 'react';
 import { useAuthStore } from '@/store/use-auth-store';
 import { SearchBox } from './filters/search-box';
+import { CartButton } from './cart/cart-button';
 
 export const AppBar = () => {
   const navigate = useNavigate();
@@ -53,47 +54,41 @@ export const AppBar = () => {
         </div>
         <SearchBox />
       </div>
+      <div className='flex items-center gap-4'>
+        <CartButton />
 
-      {user ? (
-        <DropdownMenu>
-          <DropdownMenuTrigger>
-            <Avatar>
-              <AvatarImage src='https://github.com/shadcn.png' />
-              <AvatarFallback>
-                {user.name.charAt(0).toUpperCase()}
-              </AvatarFallback>
-            </Avatar>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent>
-            <Button
-              variant='ghost'
-              className='w-full'
-              onClick={() => navigate(getUserProfilePath(user.id))}
-            >
-              My Account
+        {user ? (
+          <DropdownMenu>
+            <DropdownMenuTrigger>
+              <Avatar>
+                <AvatarImage src='https://github.com/shadcn.png' />
+                <AvatarFallback>
+                  {user.name.charAt(0).toUpperCase()}
+                </AvatarFallback>
+              </Avatar>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent>
+              <Button
+                variant='ghost'
+                className='w-full'
+                onClick={() => navigate(getUserProfilePath(user.id))}
+              >
+                My Account
+              </Button>
+              <DropdownMenuSeparator />
+              <Button variant='ghost' className='w-full' onClick={handleLogout}>
+                <LogOut className='w-4 h-4 mr-2' /> Logout
+              </Button>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        ) : (
+          <div className='flex items-center gap-4'>
+            <Button onClick={() => navigate(AUTH_ROUTES.SIGN_IN)}>
+              Sign In
             </Button>
-            <DropdownMenuSeparator />
-            <Button variant='ghost' className='w-full' onClick={handleLogout}>
-              <LogOut className='w-4 h-4 mr-2' /> Logout
-            </Button>
-          </DropdownMenuContent>
-        </DropdownMenu>
-      ) : (
-        <div className='flex items-center gap-4'>
-          <Button
-            variant='outline'
-            onClick={() => navigate(AUTH_ROUTES.SIGN_IN)}
-          >
-            Sign In
-          </Button>
-          <Button
-            variant='outline'
-            onClick={() => navigate(AUTH_ROUTES.SIGN_UP)}
-          >
-            Sign Up
-          </Button>
-        </div>
-      )}
+          </div>
+        )}
+      </div>
     </div>
   );
 };

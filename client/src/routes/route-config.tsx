@@ -7,6 +7,7 @@ import {
 import DashboardPage from '@/pages/admin/dashboard.page';
 import SignInPage from '@/pages/auth/signin.page';
 import SignUpPage from '@/pages/auth/signup.page';
+import CheckoutPage from '@/pages/user/checkout.page';
 import MenuItemPage from '@/pages/user/menu-item.page';
 import ProfilePage from '@/pages/user/profile.page';
 
@@ -18,6 +19,7 @@ export const authRoutes = [
 export const userRoutes = [
   { path: BASE_ROUTES.HOME, element: <MenuItemPage /> },
   { path: USER_ROUTES.PROFILE, element: <ProfilePage /> },
+  { path: USER_ROUTES.CHECKOUT, element: <CheckoutPage /> },
 ];
 
 export const adminRoutes = [

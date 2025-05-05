@@ -7,12 +7,23 @@ import {
 import { MenuItem } from '@/types/menu-item.type';
 import { Button } from '../ui/button';
 import { Badge } from '../ui/badge';
+import { useCartStore } from '@/store/use-cart-store';
+import { toast } from 'sonner';
 
 interface MenuItemCardProps {
   item: MenuItem;
 }
 
 export const MenuItemCard = ({ item }: MenuItemCardProps) => {
+  const addItem = useCartStore((state) => state.addItem);
+
+  const handleAddToCart = () => {
+    if (!item.isAvailable) return;
+
+    addItem(item);
+    toast.success(`${item.name} has been added to your cart`);
+  };
+
   return (
     <Card className='overflow-hidden h-full flex flex-col pt-0 max-w-md'>
       <div className='relative h-48 overflow-hidden'>
@@ -47,7 +58,11 @@ export const MenuItemCard = ({ item }: MenuItemCardProps) => {
       </CardContent>
 
       <CardFooter>
-        <Button className='w-full' disabled={!item.isAvailable}>
+        <Button
+          className='w-full'
+          disabled={!item.isAvailable}
+          onClick={handleAddToCart}
+        >
           {item.isAvailable ? 'Add to Cart' : 'Out of Stock'}
         </Button>
       </CardFooter>
