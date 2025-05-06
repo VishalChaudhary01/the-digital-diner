@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { AppLayout } from '@/layouts/app.layout';
+import { BaseLayout } from '@/layouts/base.layout';
 import { AuthLayout } from '@/layouts/auth.layout';
 import { AdminLayout } from '@/layouts/admin.layout';
 import { AuthRouteGuard } from './guards/auth-route.guard';
@@ -20,7 +20,7 @@ export const AppRoutes = () => {
         </Route>
 
         {/* User Routes */}
-        <Route element={<AppLayout />}>
+        <Route element={<BaseLayout />}>
           {userRoutes.map(({ path, element }) => (
             <Route key={path} path={path} element={element} />
           ))}

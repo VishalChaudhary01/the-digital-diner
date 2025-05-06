@@ -5,16 +5,18 @@ import {
   CardHeader,
 } from '@/components/ui/card';
 import { MenuItem } from '@/types/menu-item.type';
-import { Button } from '../ui/button';
-import { Badge } from '../ui/badge';
+import { Button } from '../../ui/button';
+import { Badge } from '../../ui/badge';
 import { useCartStore } from '@/store/use-cart-store';
 import { toast } from 'sonner';
+import { useItemDialog } from '@/hooks/use-item-dialog';
 
 interface MenuItemCardProps {
   item: MenuItem;
 }
 
 export const MenuItemCard = ({ item }: MenuItemCardProps) => {
+  const { onOpen } = useItemDialog();
   const addItem = useCartStore((state) => state.addItem);
 
   const handleAddToCart = () => {
@@ -26,7 +28,10 @@ export const MenuItemCard = ({ item }: MenuItemCardProps) => {
 
   return (
     <Card className='overflow-hidden h-full flex flex-col pt-0 max-w-md'>
-      <div className='relative h-48 overflow-hidden'>
+      <div
+        className='relative h-48 overflow-hidden cursor-pointer'
+        onClick={() => onOpen(item._id)}
+      >
         <img
           src={item.imageUrl}
           alt={item.name}
@@ -45,7 +50,7 @@ export const MenuItemCard = ({ item }: MenuItemCardProps) => {
         <div className='flex justify-between items-start'>
           <h3 className='font-medium text-lg line-clamp-1'>{item.name}</h3>
           <Badge variant='secondary' className='ml-2'>
-            Rs. {item.price.toFixed(0)}
+            Rs. {item.price.toFixed(2)}
           </Badge>
         </div>
         <Badge variant='outline'>{item.category.replace('_', ' ')}</Badge>

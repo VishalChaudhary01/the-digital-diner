@@ -59,7 +59,7 @@ export const CartItem = ({ item }: CartItemProps) => {
           </div>
 
           <span className='font-medium'>
-            Rs. {(menuItem.price * quantity).toFixed(0)}
+            Rs. {(menuItem.price * quantity).toFixed(2)}
           </span>
         </div>
       </div>

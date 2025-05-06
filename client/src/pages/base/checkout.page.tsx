@@ -32,7 +32,7 @@ const CheckoutPage = () => {
       {
         onSuccess: () => {
           queryClient.invalidateQueries({
-            queryKey: ['cart'],
+            queryKey: ['my-orders'],
           });
           clearCart();
           toast.success('Order placed successfully!');
@@ -83,22 +83,17 @@ const CheckoutPage = () => {
               <div className='space-y-2'>
                 <div className='flex justify-between text-sm'>
                   <span>Subtotal:</span>
-                  <span>Rs. {getTotalPrice().toFixed(0)}</span>
-                </div>
-                <div className='flex justify-between text-sm'>
-                  <span>Delivery Fee:</span>
-                  <span>Rs. 5</span>
+                  <span>Rs. {getTotalPrice().toFixed(2)}</span>
                 </div>
                 <div className='flex justify-between text-sm'>
                   <span>Tax:</span>
-                  <span>Rs. {(getTotalPrice() * 0.1).toFixed(0)}</span>
+                  <span>Rs. {(getTotalPrice() * 0.1).toFixed(2)}</span>
                 </div>
                 <div className='border-t pt-2 mt-2'>
                   <div className='flex justify-between font-medium'>
                     <span>Total:</span>
                     <span>
-                      Rs.
-                      {(getTotalPrice() + 5 + getTotalPrice() * 0.1).toFixed(0)}
+                      Rs. {(getTotalPrice() + getTotalPrice() * 0.1).toFixed(2)}
                     </span>
                   </div>
                 </div>

@@ -132,7 +132,7 @@ export const createOrderMutationFn = async (
 export const cancelOrderMutationFn = async (
   orderId: string
 ): Promise<CancelOrderResponse> => {
-  const response = await API.put(`/order/${orderId}`);
+  const response = await API.put(`/order/cancel/${orderId}`);
   return response.data;
 };
 
@@ -141,6 +141,6 @@ export const updateOrderMutationFn = async (
   orderId: string,
   status: OrderStatus
 ): Promise<UpdateOrderResponse> => {
-  const response = await API.put(`/order/${orderId}`, status);
+  const response = await API.put(`/order/updateStatus/${orderId}`, status);
   return response.data;
 };
